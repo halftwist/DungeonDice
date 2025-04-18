@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    enum Dice: Int {
+    enum Dice: Int, CaseIterable {  // CaseInterable to enable iterationg through the Dice enum
         case four = 4
         case six = 6
         case eight = 8
@@ -43,42 +43,16 @@ struct ContentView: View {
             Spacer()
             
             Group {
-                HStack {
-                    Button("\(Dice.four.rawValue)-sided") {
-                        resultMessage = "You rolled a \(Dice.four.roll()) on a \(Dice.four.rawValue) - sided die."
+//  ForEach
+//  A structure that computes views on demand from an underlying collection of identified data.
+                ForEach(Dice.allCases, id: \.self) { die in
+                    Button("\(die.rawValue)-sided") {
+                        resultMessage = "You rolled a \(die.roll()) on a \(die.rawValue) - sided die."
                     }
-                    Spacer()
-                    Button("\(Dice.six.rawValue)-sided") {
-                        resultMessage = "You rolled a \(Dice.six.roll()) on a \(Dice.six.rawValue) - sided die."
-                    }
-                    Spacer()
-                    Button("\(Dice.eight.rawValue)-sided") {
-                        resultMessage = "You rolled a \(Dice.eight.roll()) on a \(Dice.eight.rawValue) - sided die."
-                    }
-                    
                 }
-                HStack {
-                    Button("\(Dice.ten.rawValue)-sided") {
-                        resultMessage = "You rolled a \(Dice.ten.roll()) on a \(Dice.ten.rawValue) - sided die."
-                    }
-                    Spacer()
-                    Button("\(Dice.twelve.rawValue)-sided") {
-                        resultMessage = "You rolled a \(Dice.twelve.roll()) on a \(Dice.twelve.rawValue) - sided die."
-                    }
-                    Spacer()
-                    Button("\(Dice.twenty.rawValue)-sided") {
-                        resultMessage = "You rolled a \(Dice.twenty.roll()) on a \(Dice.twenty.rawValue) - sided die."
-                    }
-                    
-                }
-                Button("\(Dice.hundred.rawValue)-sided") {
-                    resultMessage = "You rolled a \(Dice.hundred.roll()) on a \(Dice.hundred.rawValue) - sided die."
-                }
-
-             }
+            }
             .buttonStyle(.borderedProminent)
             .tint(.red)
-
 
         }
         .padding()
