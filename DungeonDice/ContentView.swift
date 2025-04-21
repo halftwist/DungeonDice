@@ -42,9 +42,7 @@ struct ContentView: View {
             
             Spacer()
             
-            Group {
-//  ForEach
-//  A structure that computes views on demand from an underlying collection of identified data.
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 102))]) {
                 ForEach(Dice.allCases, id: \.self) { die in
                     Button("\(die.rawValue)-sided") {
                         resultMessage = "You rolled a \(die.roll()) on a \(die.rawValue) - sided die."
@@ -54,7 +52,7 @@ struct ContentView: View {
             .buttonStyle(.borderedProminent)
             .tint(.red)
 
-        }
+            }
         .padding()
     }
 }
