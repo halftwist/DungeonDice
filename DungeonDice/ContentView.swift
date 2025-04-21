@@ -58,15 +58,14 @@ struct ContentView: View {
                 .frame(height: 150)
                 .onChange(of: animationTrigger) {
                     isDoneAnimating = false
+                    // in code completion enter interpodurbou to get just 2 parameters
+                    withAnimation(.interpolatingSpring(duration: 0.6, bounce: 0.4)) {
+                        isDoneAnimating = true
+                    }
 //                    withAnimation(.spring(Spring(response: 0.3, dampingRatio: 0.4))) {
 //                        isDoneAnimating = true
 //                    }
-                    withAnimation() {
-                        isDoneAnimating = true
                     }
-
-                    }
-                }
 
             Spacer()
             
